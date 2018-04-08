@@ -1,0 +1,202 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CPSC 599 Final Project</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Lato|Tajawal" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	
+	<style>
+		body {
+
+		}
+		
+		h1, h2, h3, h4, h5, h6 {
+			font-weight: bold;
+			font-family: Baskerville, "Palatino Linotype", Palatino, "Century Schoolbook L", "Times New Roman", "serif"
+		}
+		
+		a {
+			color: darkblue;
+		}
+		
+		.only-70 {
+			width: 70%;
+		}
+		
+		.figure {
+			border: solid black 1px;
+			max-width: 80%;
+			padding: 10px;
+			margin: 10px;
+		}
+		
+		.figure > img {
+			width: 80%
+		}
+		
+		.figure-caption {
+			font-size: 12px;
+		}
+	</style>
+</head>
+
+<body style="padding: 40px; background-color: lightgray">	
+	<div class="container" style="text-align: center; border: double; padding-top: 20px; background-color: white;">
+		<div style="text-align: center">
+			<img src="Images/Combined.png" style="max-width: 95%; max-height: 200px; padding-bottom: 25px">
+			
+			<h1>Spin To Win</h1>
+			<h3>An Ice Skating Story</h3>
+			
+			<h6><i>Written by <a href="https://github.com/diannayim">Dianna Yim.</a></i></h6>
+			
+			<div id="overview">
+				<hr class="only-70">
+				<h2>Overview</h2>
+				<hr class="only-70">
+
+				<p>Ice skating has been around for many years, known for its elegant and grace by the people who participate in the sport. There are many competitions for it every year, from the Rostelecom Cup to the Grand Prix finals. All of this information is collected by the <a href="https://www.isu.org/">International Skating Union</a> and released to the public in PDF format. BuzzFeed took these scores and arranged them into either JSON and CSV format, as shown <a href="https://github.com/BuzzFeedNews/figure-skating-scores">here</a>.</p>
+
+				<p>The dataset provides information on how the skaters were scored, what was done during their performance, individual judge scores, as well as the nationality of the skater. Three files were used - performance, judged aspects, and scores for all aspects performed. The files provided included many columns that allowed me to transform them in a multitude of ways.</p>
+
+				<p>Most of the data analysis was done on the category in which the skater participated in, which are as follows: <span style="color: #E15759">Men</span>, <span style="color: #F28E2B">Ladies</span>, <span style="color: #4E79A7">Ice Skating</span>, and <span style="color: #76B7B2">Pairs</span>. In addition to this, there are some analysis questions in regards to the nationality of the skater, and the elements performed in their sequence.</p>
+			</div>
+		
+			<div id="changes">
+				<hr class="only-70">
+				<h2>Changes to Questions</h2>
+				<hr class="only-70">
+				
+				Due to the fact that my questions were much too broad and not necessarily targeted towards my dataset, most of them were changed so that they could be answered in a more logical way with concrete results.
+			</div>
+			
+			<div id="question1">
+				<hr class="only-70">
+				<h4>Which category (<span style="color: #E15759">Men</span>, <span style="color: #F28E2B">Ladies</span>, <span style="color: #4E79A7">Ice Skating</span>, <span style="color: #76B7B2">Pairs</span>) has the highest score for segment points?</h4>
+				<hr class="only-70">
+				
+				<p>Originally for this question, I had hoped to gain understanding as to which category had the highest average for segment scores. Segment scores represent the total scoring for both component and element scores. The results are below:</p>
+				
+				<figure class="figure">
+					<img class="figure-img" src="Images/Average Performance Scores for Catgories.png">
+					<figcaption class="figure-caption"><b>Figure 1.</b> Average of Total Segment Score for each Performance Id broken down by skating_type.  Color shows details about category.</figcaption>
+				</figure>
+				
+				<p>The clear winner here is...</p>
+				
+				<img src="Images/Men.png" height="150px">
+				
+				<p>However, while the analysis gave me a rough understanding that men were typically scored higher, I realized that having more exact values for the maximum and minimum would be more accurate. I then replotted this onto a box and whiskers chart to gather more information.</p>
+				
+				<figure class="figure">
+					<img class="figure-img" src="Images/Performance Scores for Catgories.png">
+					<figcaption class="figure-caption"><b>Figure 2.</b> Average of Total Segment Score for each skating_type broken down by skating_type.  Color shows details about skating_type.  Details are shown for Performance Id (Judged-Aspects).</figcaption>
+				</figure>
+				
+				<p>From this, we can draw the conclusion that Men have the highest performance score, and also have the second highest low end of the performances. Their upper hinge and lower hinge are relatively high when comparing them to other categories. Both Ladies and Pairs have relatively similar spread in terms of scoring, and Ice Dancing has a very tight scoring scheme within the last two years. </p>
+			</div>
+			
+			<div id="question2">
+				<hr class="only-70">
+				<h4>How many elements are attempted for each category (<span style="color: #E15759">Men</span>, <span style="color: #F28E2B">Ladies</span>, <span style="color: #4E79A7">Ice Skating</span>, <span style="color: #76B7B2">Pairs</span>)?</h4>
+				<hr class="only-70">
+				
+				<p>From the previous question, we drew the conclusion that men had the highest segment scores out of the four categories. I wanted to understand whether this had a link to the number of elements in their performances. First, I plotted the number of elements for each category:</p>
+				
+				<figure class="figure">
+					<img class="figure-img" src="Images/Number of Elements For Each Category.png">
+					<figcaption class="figure-caption"><b>Figure 3.</b> Count of Performance Id for each skating_type.  Color shows details about skating_type.  The marks are labeled by count of Performance Id.</figcaption>
+				</figure>
+				
+				<p>It appeared that men did typically tend to skate more elements from the other categories. The maximum, minimum and average were then plotted to gather a better understanding of the distribution of elements.</p>
+				
+				<figure class="figure">
+					<img class="figure-img" src="Images/Number of Elements Performed for Each Category.png">
+					<figcaption class="figure-caption"><b>Figure 4.</b> Count of Aspect Desc for each Performance Id (Judged-Aspects) broken down by skating_type.  Color shows details about skating_type. The data is filtered on Section, which keeps elements.</figcaption>
+				</figure>
+				
+				<p>With this and the previous section compared, a pattern begins emerging. Men seems to always have the highest, with Ladies and Pairs following closely behind, and Ice Skating always being the lowest. This is possible because Ice Skating cannot perform lifts, thus heavily restricting the elements they can actually perform, and placing more focus on the component aspect of the scoring.</p>
+			</div>
+			
+			<div id="question3">
+				<hr class="only-70">
+				<h4>Are countries consistent with high element and performance scores? Or do countries with high performance scores have low element scores?</h4>
+				<hr class="only-70">
+				
+				<p>From an anime that I watched (Yuri! On Ice), there was a heavy emphasis on skaters who could not perform well in elements would usually focus on components, as well as vice versa. I was wondering if this was actually true, or if the data would refute this. Below are the results.</p>
+				
+				<figure class="figure">
+					<img class="figure-img" src="Images/Difference Between Element and Component Scores by Nation.png">
+					<figcaption class="figure-caption"><b>Figure 5.</b> Avg. Total Element Score, Avg. Total Component Score and Avg. Element-Component for each Nation.  Color shows details about Avg. Total Element Score, Avg. Total Component Score and Avg. Element-Component.</figcaption>
+				</figure>
+				
+				<p>I organized all of the data by country, and then graphed both the element and component scores side by side. Additionally, I added an extra bar that would show the difference between the two scores. Apparently, the hypothesis of countries only paying attention to either element or component scores was incorrect - from the graph, it is clear that the two scores tend to not vary more than a value of about 10.</p>
+			</div>
+			
+			<div id="question4">
+				<hr class="only-70">
+				<h4>Which countries have won competitions, and how many have they won for each category?</h4>
+				<hr class="only-70">
+				
+				<figure class="figure">
+					<img class="figure-img" src="Images/Number of Nations in All Competitions.png">
+					<figcaption class="figure-caption"><b>Figure 6.</b> Number of Nations in competitions.</figcaption>
+				</figure>
+				
+				<p>There are a total of 49 nations that are present within the competition. However, the number of competitions that each of these countries have won is uncertain. The results are below:</p>
+				
+				<figure class="figure">
+					<img class="figure-img" src="Images/Winner of Competition Types Tally.png">
+					<figcaption class="figure-caption"><b>Figure 7.</b> Count of Nation for each skating_type broken down by Nation. Color shows details about skating_type. The data is filtered on minimum of Rank, which includes values less than or equal to 1.</figcaption>
+				</figure>
+				
+				<p>This graph clearly illustrates that only 9 countries out of the 49 have won a first place medal for the competitions in each category. USA has currently won the most Ice Skating and and Men competitions, whereas Russia has won most of the Ladies and Pairs competitions. The only two countries that have won a medal in every category is Canada and Russia. The chart also shows that Russia is clearly dominating the skating competitions, with their numbers being relatively high when compared to the other countries.</p>
+			</div>
+			
+			<div id="question5">
+				<hr class="only-70">
+				<h4>Out of the winners, what elements in their performance do they have in common?</h4>
+				<hr class="only-70">
+				
+				<p>Since every performance has multiple elements embedded within it, and specific elements are worth more, there should be elements that are noticibly higher in terms of their appearance rate, as shown below. All of the elements are abbreviated within the dataset - however, this <a href="http://www.skatinginbc.com/sites/default/files/technical-updates/abbreviationselements_2014_15.pdf">link</a> provides all of the necessary information to decifer these codes and understand what aspect was performed.</p>
+				
+				<figure class="figure">
+					<img class="figure-img" src="Images/Most Common Elements for Winners (over 20).png">
+					<figcaption class="figure-caption"><b>Figure 8.</b> Count of Aspect Desc for each Aspect Desc.  Color shows details about Nation. The data is filtered on minimum of Rank and Section. The minimum of Rank filter includes values less than or equal to 1. The Section filter keeps elements. The view is filtered on count of Aspect Desc, which ranges from 20 to 145.</figcaption>
+				</figure>
+				
+				<p>For clarity reasons, all elements that appeared less than 20 times were removed from the graph. It is clear that every winner in every country performed a CCoSp4, or otherwise known as a Change Foot Combination Spin, except for France. This combination spin appeared almost 500 times within all of the competitions, displaying its importance to most ice skating sequences. France seemed to favour the ChSq1, which is the Choreo Sequence, the second highest element performed on the list. It appears that Germany did not do any of these within their winning sequences - however, when referring back to Figure 7, it is clear that they did not win many competitions as it is (only 21 in Pairs).</p>
+			</div>
+			
+			<div id="question6">
+				<hr class="only-70">
+				<h4>Which of the elements appeared over 70 times in all the competitions, and in what categories?</h4>
+				<hr class="only-70">
+				
+				<p>From the previous question we were able to ascertain which elements were popular in which countries. However, elements are relatively specific to the category in which they are performed in. The following chart displays this:</p>
+				
+				<figure class="figure">
+					<img class="figure-img" src="Images/Elements Performed Over 70 Times in All Competitions.png">
+					<figcaption class="figure-caption"><b>Figure 9.</b> Count of Aspect Desc for each Aspect Desc.  Color shows details about skating_type. The data is filtered on Section, which keeps elements. The view is filtered on count of Aspect Desc, which ranges from 70 to 719.</figcaption>
+				</figure>
+				
+				<p>As noted in the previous question, the Change Foot Combination Spin is still the most common - however, it is only performed in the categories Ladies and Men. Upon further analysis, it is clear that specific elements such as STw4 (Set of Sequential or Synchronized Twizzles), RoLi4 (Rotational Lift), etc. are specifically for the Ice Dance category. There is only one overlapping element between all four categories, which is the Combination Spin as labeled on the chart. The only category which performs this element is Ice Dance, although it is actually available for all. This is probably due to the fact that the number of points it is worth is actually extremely low, and would not be worth doing in the other categories.</p>
+			</div>
+							
+			<div id="didyouknow">
+				<hr class="only-70">
+				<h2>Did You Know...</h2>
+				<hr class="only-70">
+				
+				<p>- Ice Dancing and Pairs are actually very similar, except that Ice Dancing competitors cannot perform jumps and are scored heavily on components, whereas pairs are typically scored more based on their elements.</p>
+				
+				<p>- Components (Interpretation, Composition) are scored between 0 and 10, but Elements (Jumps, Lifts, Combos) are scored between -3 and 3, under a scale known as <b>Grade of Execution</b>, or GOE.</p>
+			</div>
+		</div>
+	</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
